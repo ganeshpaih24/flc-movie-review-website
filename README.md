@@ -21,7 +21,6 @@
     
     source env/bin/activate
     ```
-   
    If you are giving a different name then `venv`, then please mention it in `.gitignore` file first
 
 3. Install all the requirements
@@ -29,7 +28,6 @@
     ```bash
     pip install -r requirements.txt
     ```
-   
 4. Checkout to develop branch
      ```git
     git status
@@ -38,7 +36,6 @@
     git checkout develop
     
     ```
-   
 
 5. Make migrations/ Create db.sqlite3
 
@@ -52,7 +49,6 @@
     python manage.py createsuperuser
     ```
    Then select your username and password.
-   
 7. Run server
     ```bash
     python manage.py runserver
