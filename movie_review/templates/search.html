@@ -1,0 +1,19 @@
+<head>
+    <style>
+        .movies{
+            display: flex;
+        }
+    </style>
+</head>
+<h1>This page is in progress...Search Results....</h1>
+{%for movie in movie_data.Search%}
+<div class="movies">
+    <div class="movie-card">
+        <img src="{{movie.Poster}}" alt="">
+        <h3>{{movie.Title}}</h3>
+        <h4>{{movie.Year}}</h4>
+        <h5>{{movie.Type}}</h5>
+    </div>
+</div>
+
+{%endfor%}
