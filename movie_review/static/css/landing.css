@@ -1,0 +1,138 @@
+*{
+background-image:url("back2.jpg");
+background-repeat: no-repeat;
+background-attachment:fixed;
+background-size: cover;
+margin: 0px;
+box-sizing: border-box;
+}
+nav a{
+    text-decoration: none;
+    color: aliceblue;
+    width: 150;
+    float:right;
+    padding-right: 40px;
+    padding-top: 0.5cm;
+    font-size: 25px;
+ }
+ nav{
+    overflow:hidden;
+   position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: #333;
+      z-index: 1000;
+ }
+ nav a:hover{
+    color: rgb(148, 171, 241);
+ }
+ nav a:active{
+    color: red;
+ }
+ .text{
+    font-size: 50px;
+    text-align: center;
+    padding-top: 4cm;
+    color: rgb(62, 62, 62);
+ }
+ .search_button{
+   text-align: center;
+   padding-top: 1cm;
+ }
+ p{
+   position: relative;
+   -webkit-text-fill-color: transparent;
+   -webkit-text-stroke: 1.5px rgb(88, 88, 88);
+ }
+ p::before{
+   content: attr(data-text);
+   position: absolute;
+   border-right: 3px solid rgb(81, 249, 2);
+   overflow:hidden;
+   width:0;
+   top: 0;
+   height: 100%;
+   left: 1;
+   animation: animate 4.5s linear infinite;
+ }
+ @keyframes animate {
+ 
+      0%,100%,10%
+      {
+         width:0;
+         -webkit-text-fill-color:lavender;
+      }
+      90%,80%{
+         width:18.45cm;
+      }
+   }
+  
+.input{
+   /* border-radius: 13px; */
+   font-size: 20px;
+   padding:13px;
+   
+}/*
+ button{
+    padding:13px;
+   padding-left: 80px;
+   padding-right: 80px; 
+   border-color:rgb(126, 126, 126);
+   border-radius: 13px;
+   font-size:15px;
+}
+/*
+button a{
+   color:rgb(255, 255, 255);
+   cursor: pointer;
+   text-decoration: none;
+   padding: 13px;
+}
+button a:hover{
+   color:rgb(194, 196, 253);
+} */
+
+.home .background img{
+   position: absolute;
+   top: 0;
+   left: 0;
+   z-index: -1;
+   height: 100%;
+   width: 100%;
+   object-fit: cover;
+   filter: brightness(30%);
+}
+
+.home{
+   min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-flow: column;
+      position: relative;
+      z-index: 0;
+}
+
+.search-bar{
+   background: #fff;
+   width:50%;
+   height: 45px;
+   display: flex;
+}
+
+.search-bar .input{
+   flex:1;
+   border:none;
+   outline:none;
+}
+
+.search-bar button{
+   background: #333;
+   padding: 1px 30px;
+   border: none;
+   outline:none;
+   color:#fff;
+   letter-spacing: 1px;
+   cursor: pointer;
+}

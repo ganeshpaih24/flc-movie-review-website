@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <html lang="en">
+    <head>
+        <title>Login page</title>
+         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    </head>
+    <!-- <body>
+        <nav>
+            <a href="{% url 'login' %}">Sign in</a>
+            <img src="{% static '/img/logo.png' %}" title="Logo" width="75">
+        </nav> -->
+        <div class="container">
+            <h1>LOGIN</h1>
+            <form class="form1" action="#" method="POST">
+              <div class="form_grp"> 
+               <label>Username</label>
+               <input type="text" name="name" placeholder="Enter username">
+              </div>  
+              <div class="form_grp"> 
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Enter password">
+               </div>  
+               <div>
+                <input class="button" type="submit" value="submit" name="submit">
+               </div>  
+               <div>
+                <h5>New here?<a href="{% url 'register' %}">Register</a></h5>
+               </div>  
+            </form>
+        </div>
+     </body>
+    </html>
+</html>
