@@ -1,11 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
     <html lang="en">
     <head>
         <title>Login page</title>
-         <link rel="stylesheet" type="text/css" href="style.css">
+         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     </head>
-    <body>
+    <!-- <body>
+        <nav>
+            <a href="{% url 'login' %}">Sign in</a>
+            <img src="{% static '/img/logo.png' %}" title="Logo" width="75">
+        </nav> -->
         <div class="container">
             <h1>LOGIN</h1>
             <form class="form1" action="#" method="POST">
@@ -21,7 +26,7 @@
                 <input class="button" type="submit" value="submit" name="submit">
                </div>  
                <div>
-                <h5>New here?<a href="#">Register</a></h5>
+                <h5>New here?<a href="{% url 'register' %}">Register</a></h5>
                </div>  
             </form>
         </div>
