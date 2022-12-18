@@ -1,6 +1,9 @@
 from django.db import models
 from actor.models import Actor
 from django.utils.text import slugify
+import requests
+from io import BytesIO
+from django.core import files
 
 # Create your models here.
 class Genre(models.Model):
@@ -32,7 +35,7 @@ class Movie(models.Model):
     Genre=models.ManyToManyField(Genre,blank=True)
     Director=models.CharField(max_length=100,blank=True)
     Writer=models.CharField(max_length=300,blank=True)
-    Actors=models.CharField(Actor,blank=True)
+    Actors=models.ManyToManyField(Actor,blank=True)
     Plot=models.CharField(max_length=900,blank=True)
     Language=models.CharField(max_length=300,blank=True)
     Country=models.CharField(max_length=100,blank=True)
@@ -44,16 +47,33 @@ class Movie(models.Model):
 
     def __str__(self):
         return self.Title
+    
+    def save(self,*args,**kwargs):
+        if self.Poster=='' and self.Poster_url is '':
+            resp=requests.get(self.Poster_url)
+            pb=BytesIO()
+            pb.write(resp.content)
+            pb.flush()
+            file_name=self.Poster_url.split("/")[-1]
+            self.Poster.save(file_name,files.File(pb),save=False)
+        return super().save(*args,**kwargs)
 
-from django.contrib.auth.models import User
 
 
-# Extending User Model Using a One-To-One Link
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    avatar = models.ImageField(default='default.jpg', upload_to='profile_images')
-    bio = models.TextField()
 
-    def __str__(self):
-        return self.user.username
+
+
+
+# from django.contrib.auth.models import User
+
+
+# # Extending User Model Using a One-To-One Link
+# class Profile(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+#     avatar = models.ImageField(default='default.jpg', upload_to='profile_images')
+#     bio = models.TextField()
+
+#     def __str__(self):
+#         return self.user.username
