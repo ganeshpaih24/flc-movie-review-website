@@ -1,7 +1,7 @@
-from django.contrib import admin
 from django.urls import path
+from .views import profile
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-
+    # Add this
+    path('profile/', profile, name='users-profile'),
 ]
