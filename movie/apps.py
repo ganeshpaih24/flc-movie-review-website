@@ -5,5 +5,5 @@ class MovieConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
 
     name = 'movie'
-    def ready(self):
-        import users.signals
+    # def ready(self):
+    #     import users.signals
