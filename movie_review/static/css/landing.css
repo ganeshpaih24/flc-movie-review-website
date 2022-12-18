@@ -17,6 +17,12 @@ nav a{
  }
  nav{
     overflow:hidden;
+   position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: #333;
+      z-index: 1000;
  }
  nav a:hover{
     color: rgb(148, 171, 241);
@@ -25,9 +31,9 @@ nav a{
     color: red;
  }
  .text{
-    font-size: 100px;
+    font-size: 50px;
     text-align: center;
-    padding-top: 8.3cm;
+    padding-top: 4cm;
     color: rgb(62, 62, 62);
  }
  .search_button{
@@ -48,7 +54,7 @@ nav a{
    top: 0;
    height: 100%;
    left: 1;
-   animation: animate 6s linear infinite;
+   animation: animate 4.5s linear infinite;
  }
  @keyframes animate {
  
@@ -58,18 +64,25 @@ nav a{
          -webkit-text-fill-color:lavender;
       }
       90%,80%{
-         width:36.7cm;
+         width:18.45cm;
       }
    }
- 
- button{
+  
+.input{
+   /* border-radius: 13px; */
+   font-size: 20px;
    padding:13px;
+   
+}/*
+ button{
+    padding:13px;
    padding-left: 80px;
-   padding-right: 80px;
+   padding-right: 80px; 
    border-color:rgb(126, 126, 126);
    border-radius: 13px;
-   font-size:30px;
+   font-size:15px;
 }
+/*
 button a{
    color:rgb(255, 255, 255);
    cursor: pointer;
@@ -78,4 +91,48 @@ button a{
 }
 button a:hover{
    color:rgb(194, 196, 253);
+} */
+
+.home .background img{
+   position: absolute;
+   top: 0;
+   left: 0;
+   z-index: -1;
+   height: 100%;
+   width: 100%;
+   object-fit: cover;
+   filter: brightness(30%);
+}
+
+.home{
+   min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-flow: column;
+      position: relative;
+      z-index: 0;
+}
+
+.search-bar{
+   background: #fff;
+   width:50%;
+   height: 45px;
+   display: flex;
+}
+
+.search-bar .input{
+   flex:1;
+   border:none;
+   outline:none;
+}
+
+.search-bar button{
+   background: #333;
+   padding: 1px 30px;
+   border: none;
+   outline:none;
+   color:#fff;
+   letter-spacing: 1px;
+   cursor: pointer;
 }
