@@ -1,4 +1,4 @@
-from django.shortcuts import render ,redirect, get_or_create
+from django.shortcuts import render ,redirect
 from django.shortcuts import render ,redirect
 from django.shortcuts import render
 
@@ -6,8 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 import requests
-from movie.Models import Movie, Genre, Rating
-from actor.Models import Actor
+from .models import Movie, Genre, Rating
+from actor.models import Actor
 from django.utils.text import slugify
 
 
@@ -77,7 +77,7 @@ def movieDetails(request,imdb_id):
         )
         m.Genre.set(genre_objs)
         m.Actors.set(actor_objs)
-        m.Ratings.set(rating_objs)
+        #m.Ratings.set(rating_objs)
 
         for actor in actor_objs:
             actor.movies.add(m)
@@ -88,7 +88,7 @@ def movieDetails(request,imdb_id):
         'movie_data':movie_data,
         'our_db':our_db,
     }
-    template=loader.get_template('movie_details.html')
+    template=loader.get_template('MovieDetailsPage.html')
     return HttpResponse(template.render(context,request))
 
 
