@@ -1,4 +1,8 @@
 from django.shortcuts import render ,redirect, get_or_create
+from django.shortcuts import render ,redirect
+from django.shortcuts import render
+
+from django.contrib.auth.decorators import login_required
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 import requests
@@ -99,3 +103,8 @@ def register(request):
 
 def search(request):
     return render(request,'search.html')
+    
+@login_required
+def profile(request):
+    return render(request, 'users/profile.html')
+
