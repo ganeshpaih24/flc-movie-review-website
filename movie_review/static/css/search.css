@@ -111,9 +111,9 @@
   }
   
   .container {
-    background-color: #151515;
+    background-color: #c9d1d5;
     min-height: calc(100vh - 50px);
-    color: white;
+    color: #0c243c;
   }
   
   .content-container {
@@ -157,7 +157,7 @@
   .movie-list {
     display: flex;
     align-items: center;
-    height: 300px;
+    height: 500px;
     transform: translateX(0);
     transition: all 1s ease-in-out;
   }
@@ -182,13 +182,13 @@
   .movie-list-item-img {
     transition: all 1s ease-in-out;
     width: 270px;
-    height: 200px;
+    height: 400px;
     object-fit: cover;
     border-radius: 20px;
   }
   
   .movie-list-item-title {
-    background-color: #333;
+    background-color: #7e8c9c;
     padding: 0 10px;
     font-size: 32px;
     font-weight: bold;
@@ -200,7 +200,7 @@
   }
   
   .movie-list-item-desc {
-    background-color: #333;
+    background-color: #7e8c9c;
     padding: 10px;
     font-size: 14px;
     position: absolute;
