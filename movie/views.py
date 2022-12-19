@@ -1,7 +1,4 @@
-from django.shortcuts import render ,redirect
-from django.shortcuts import render ,redirect
-from django.shortcuts import render
-
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
@@ -91,14 +88,28 @@ def movieDetails(request,imdb_id):
     template=loader.get_template('MovieDetailsPage.html')
     return HttpResponse(template.render(context,request))
 
+def genres(request,genre_slug):
+    genre=get_object_or_404(Genre,slug=genre_slug)
+    movie_data=Movie.objects.filter(Genre=genre)
+    context={
+        'movie_data':movie_data,
+    }
+    template=loader.get_template('genre.html')
+    return HttpResponse(template,render(context,request))
+
+
 
 
 def login(request):
-    return render(request,'login.html')
+    return render(request,'user/login.html')
+
+
+def userinfo(request):
+    return render(request,'user/userdet.html')
 
 
 def register(request):
-    return render(request,'register.html')
+    return render(request,'user/register.html')
 
 
 def search(request):

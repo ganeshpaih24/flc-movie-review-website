@@ -52,8 +52,10 @@
         <h6><b>Runtime : </b>{{movie_data.Runtime}}</h6>
 
         {%if our_db is True %}
-          <h6><b>Genre : {% for genre in movie_data.Genre.all %} </b>{{genre}}, </h6>
-          {% endfor %}
+          <h6><b>Genre : 
+            {% for genre in movie_data.Genre.all %} 
+              <a href="{{ genre.get_absolute_url }}">{{ genre }}</a>, 
+            {% endfor %}</b></h6>
         {% else %}
           <h6><b>Genre :</b>{{movie_data.Genre}}</h6>
         {%endif%}
@@ -67,7 +69,6 @@
         <h6><b>Actors :</b>{{movie_data.Actors}}</h6>
         {%endif%}
 
-        <h6><b>Actors : </b>{{movie_data.Genre}}</h6>
         <h6><b>Writer :</b>{{movie_data.Writer}}</h6>
         <h6><b>Director : </b>{{movie_data.Director}}</h6>
         <h6><b>Awards : </b>{{movie_data.Awards}}</h6>

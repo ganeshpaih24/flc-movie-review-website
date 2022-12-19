@@ -1,0 +1,60 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">Edit Profile</div>
+        <div class="content">
+            <form action="#">
+                <div class="user-details">
+                    <div class="input-box">
+                        <button class="details">File</button>
+                        {{form.picture}}
+                        <input type="text">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Username</span>
+                        {{form.username}}
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Email</span>
+                        {{form.email}}
+                    </div>
+                    <div class="input-box">
+                        <span class="details">First Name</span>
+                        {{form.first_name}}
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details">Last Name</span>
+                        {{form.last_name}}
+                        <input type="text" placeholder="Enter your last name" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Password</span>
+                        {{form.password}}
+                        <input type="password" placeholder="Enter your password" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Confirm Password</span>
+                        {{form.confirm_password}}
+                    </div>
+                </div>
+                {{form.errors}}
+                <div class="button">
+                    <input type="submit" value="Register">
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

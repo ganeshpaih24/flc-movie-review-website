@@ -1,15 +1,16 @@
+{%load static%}
 <!DOCTYPE html>
 <html>
     <head>
         <title>User details</title>
-        <link rel="stylesheet" type="text/css" href="userstyle.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/userstyle.css' %}">
     </head>
     <body>
         <div class="container"> 
             <div class="profile">     
                 <div class ="image">  
-                   <img src="colour.jpg" class="img-top">
-                  <img src="blank.jpg" class="user-img" >
+                   <img src="{% static 'img/colour.jpg %}" class="img-top">
+                  <img src="{% static 'img/blank.jpg' %}" class="user-img" >
                 </div>  
                 <div class="first">
                     <h2>Name</h2>

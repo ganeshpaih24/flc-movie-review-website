@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
+from django.urls import reverse
+
 
 # Create your models here.
 class Actor(models.Model):
@@ -15,3 +17,6 @@ class Actor(models.Model):
         if not self.slug:
             self.slug=slugify(self.name)
         return super().save(*args,**kwargs)
+
+    def get_absolute_url(self): 
+        return reverse('actors', args=[self.slug])
