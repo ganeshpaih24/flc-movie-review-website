@@ -10,34 +10,38 @@
   <div class="container">
     <div class="title">Registration</div>
     <div class="content">
-      <form action="#">
+      
+      <form method="POST"  role="form" action="">
         <div class="user-details">
           <div class="input-box">
-            <span class="details">Username</span>
-            <input type="text" placeholder="Enter your username" required>
+            <label for="username">Username</label>
+            <input type="text" name="username">
+            {{form.username}}	
           </div>
           <div class="input-box">
-            <span class="details">Email</span>
-            <input type="text" placeholder="Enter your email" required>
+          {{form.email}}
+            <label for="email">Email</label>
           </div>
           <div class="input-box">
-            <span class="details">First Name</span>
-            <input type="text" placeholder="Enter your first name" required>
-          </div>
-          
-          <div class="input-box">
-            <span class="details">Last Name</span>
-            <input type="text" placeholder="Enter your last name" required>
+          {{form.first_name}}
+            <label for="first_name">First name</label>
           </div>
           <div class="input-box">
-            <span class="details">Password</span>
-            <input type="password" placeholder="Enter your password" required>
+          {{form.last_name}}
+            <label for="last_name">Last name</label>
           </div>
           <div class="input-box">
-            <span class="details">Confirm Password</span>
-            <input type="password" placeholder="Confirm your password" required>
+          {{form.password}}
+            <label for="password">Password</label>
+          </div>
+          <div class="input-box">
+          {{form.confirm_password}}
+            <label for="confirm_password">Confirm Password</label>
           </div>
         </div>
+        {% if form.errors %}
+          {{form.errors}}
+        {%endif%}
         <div class="button">
           <input type="submit" value="Register">
         </div>

@@ -1,11 +1,11 @@
-from django.contrib import admin
 from django.urls import path
-from .import views 
+from .views import Signup,EditProfile
+from django.contrib.auth import views as userViews
+
 
 urlpatterns = [
-path('login/', views.loginPage, name="login"),
-path('logout/', views.logoutUser, name="logout"),
-
-    path('admin/', admin.site.urls),
-
+    path('login/', userViews.LoginView.as_view(template_name='user/login.html'), name='login'),
+	path('logout/', userViews.LogoutView.as_view(), name='logout'),
+    path('profile/edit', EditProfile, name='edit-profile'),
+	path('signup/', Signup, name='signup'),
 ]

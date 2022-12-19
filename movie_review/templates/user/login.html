@@ -13,15 +13,19 @@
         </nav> -->
         <div class="container">
             <h1>LOGIN</h1>
-            <form class="form1" action="#" method="POST">
+            <form class="form1" action="" method="POST">
+                {%csrf_token%}
               <div class="form_grp"> 
                <label>Username</label>
-               <input type="text" name="name" placeholder="Enter username">
+               {{form.username}}
               </div>  
               <div class="form_grp"> 
                 <label>Password</label>
-                <input type="password" name="password" placeholder="Enter password">
-               </div>  
+                {{form.password}}
+               </div> 
+               {%if form.errors%}
+               <h3>Your username or password did not match!!</h3> 
+               {%endif%}
                <div>
                 <input class="button" type="submit" value="submit" name="submit">
                </div>  
