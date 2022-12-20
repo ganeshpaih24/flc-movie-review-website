@@ -71,6 +71,7 @@ def movieDetails(request,imdb_id):
             Awards=movie_data['Awards'],
             Poster_url=movie_data['Poster'],
             Type=movie_data['Type'],
+            imdbID=movie_data['imdbID'],
         )
         m.Genre.set(genre_objs)
         m.Actors.set(actor_objs)
@@ -95,7 +96,7 @@ def genres(request,genre_slug):
         'movie_data':movie_data,
     }
     template=loader.get_template('genre.html')
-    return HttpResponse(template,render(context,request))
+    return HttpResponse(template.render(context,request))
 
 
 

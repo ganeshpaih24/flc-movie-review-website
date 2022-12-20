@@ -23,7 +23,7 @@
                         {%for movie in movie_data%}
                         <div class="movie-list-item">
                             <a href="{% url 'movie-details' movie.imdbID %}"><img class="movie-list-item-img"
-                                    src="{{movie.Poster}}" alt=""></a>
+                                    src="{{movie.Poster.url}}" alt=""></a>
                             <span class="movie-list-item-title">{{movie.Title}}</span>
                             <p class="movie-list-item-desc">{{movie.Year}}</p>
                             <button class="movie-list-item-button">{{movie.Type}}</button>
