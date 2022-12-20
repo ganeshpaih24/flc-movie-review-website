@@ -53,7 +53,7 @@ class Movie(models.Model):
         return self.Title
     
     def save(self,*args,**kwargs):
-        if self.Poster=='' and self.Poster_url is '':
+        if self.Poster=='' and self.Poster_url != '':
             resp=requests.get(self.Poster_url)
             pb=BytesIO()
             pb.write(resp.content)
