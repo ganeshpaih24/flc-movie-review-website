@@ -55,6 +55,43 @@ def movieDetails(request,imdb_id):
         for rate in movie_data['Ratings']:
             r,created=Rating.objects.get_or_create(source=rate['Source'],rating=rate['Value'])
             rating_objs.append(r)
+
+        #Language
+        language_list=[x.strip() for x in movie_data['Language'].split(',')]
+        if language_list[0] == 'Hindi':
+            genre_slug=slugify("Bollywood")
+            g,created=Genre.objects.get_or_create(title="Bollywood",slug=genre_slug)
+            genre_objs.append(g)
+        elif language_list[0] == 'English':
+            genre_slug=slugify("Hollywood")
+            g,created=Genre.objects.get_or_create(title="Hollywood",slug=genre_slug)
+            genre_objs.append(g)
+        elif language_list[0] == 'Tamil':
+            genre_slug=slugify("Kollywood")
+            g,created=Genre.objects.get_or_create(title="Kollywood",slug=genre_slug)
+            genre_objs.append(g)
+        elif  language_list[0] == 'Telugu':
+            genre_slug=slugify("Tollywood")
+            g,created=Genre.objects.get_or_create(title="Tollywood",slug=genre_slug)
+            genre_objs.append(g)
+        elif language_list[0] == 'Kannada':
+            genre_slug=slugify("Sandalwood")
+            g,created=Genre.objects.get_or_create(title="Sandalwood",slug=genre_slug)
+            genre_objs.append(g)
+        else:
+            genre_slug=slugify("Others")
+            g,created=Genre.objects.get_or_create(title="Others",slug=genre_slug)
+            genre_objs.append(g)
+        
+        if language_list[0] == 'Japanese' and genre_list[0] == 'Animation' and movie_data['Type'] == 'series':
+            genre_slug=slugify("Anime")
+            g,created=Genre.objects.get_or_create(title="Anime",slug=genre_slug)
+            genre_objs.append(g)
+
+        
+        
+
+            
         
         
         m,created=Movie.objects.get_or_create(
