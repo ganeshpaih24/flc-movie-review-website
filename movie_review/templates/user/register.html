@@ -10,33 +10,33 @@
   <div class="container">
     <div class="title">Registration</div>
     <div class="content">
-      
-      <form method="POST"  role="form" action="">
+      <form method="POST" action="">
+        {%csrf_token%}
         <div class="user-details">
           <div class="input-box">
             <label for="username">Username</label>
-            <input type="text" name="username">
+            <!-- <input type="text" name="username"> -->
             {{form.username}}	
           </div>
           <div class="input-box">
-          {{form.email}}
             <label for="email">Email</label>
+            {{form.email}}
           </div>
           <div class="input-box">
-          {{form.first_name}}
             <label for="first_name">First name</label>
+            {{form.first_name}}
           </div>
           <div class="input-box">
-          {{form.last_name}}
             <label for="last_name">Last name</label>
+            {{form.last_name}}
           </div>
           <div class="input-box">
-          {{form.password}}
             <label for="password">Password</label>
+            {{form.password}}
           </div>
           <div class="input-box">
-          {{form.confirm_password}}
             <label for="confirm_password">Confirm Password</label>
+            {{form.confirm_password}}
           </div>
         </div>
         {% if form.errors %}
