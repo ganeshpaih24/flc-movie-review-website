@@ -7,8 +7,6 @@ from .models import Movie, Genre, Rating
 from actor.models import Actor
 from django.utils.text import slugify
 
-
-
 # Create your views here.
 def landing(request):
     query=request.GET.get('q')
@@ -24,6 +22,7 @@ def landing(request):
         return HttpResponse(template.render(context,request))
     return render(request,'landing.html')
 
+@login_required(login_url='login')
 def movieDetails(request,imdb_id):
     if Movie.objects.filter(imdbID=imdb_id).exists():
         movie_data=Movie.objects.get(imdbID=imdb_id)
@@ -39,10 +38,10 @@ def movieDetails(request,imdb_id):
         actor_objs=[]
 
         #actor
-        actor_list=[x.strip() for x in movie_data['Actors'].split(',')]
-        for actor in actor_list:
-            a,created=Actor.objects.get_or_create(name=actor)
-            actor_objs.append(a)
+        # actor_list=[x.strip() for x in movie_data['Actors'].split(',')]
+        # for actor in actor_list:
+        #     a,created=Actor.objects.get_or_create(name=actor)
+        #     actor_objs.append(a)
             
         #genre
         genre_list=list(movie_data['Genre'].replace(" ","").split(','))
@@ -88,12 +87,6 @@ def movieDetails(request,imdb_id):
             g,created=Genre.objects.get_or_create(title="Anime",slug=genre_slug)
             genre_objs.append(g)
 
-        
-        
-
-            
-        
-        
         m,created=Movie.objects.get_or_create(
             Title=movie_data['Title'],
             Year=movie_data['Year'],
@@ -134,26 +127,3 @@ def genres(request,genre_slug):
     }
     template=loader.get_template('genre.html')
     return HttpResponse(template.render(context,request))
-
-
-
-
-def login(request):
-    return render(request,'user/login.html')
-
-
-def userinfo(request):
-    return render(request,'user/userdet.html')
-
-
-def register(request):
-    return render(request,'user/register.html')
-
-
-def search(request):
-    return render(request,'search.html')
-    
-@login_required
-def profile(request):
-    return render(request, 'users/profile.html')
-

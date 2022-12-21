@@ -12,7 +12,8 @@
     <div class="container">
         <div class="title">Edit Profile</div>
         <div class="content">
-            <form action="#">
+            <form method="POST" ENCTYPE="multipart/form-data" action="">
+                {%csrf_token%}
                 <div class="user-details">
                     <div class="input-box">
                         <button class="details">File</button>
@@ -46,8 +47,22 @@
                         <span class="details">Confirm Password</span>
                         {{form.confirm_password}}
                     </div>
+                    <div class="input-box">
+                        <span class="details">Location</span>
+                        {{form.ocation}}
+                    </div>
+                    <div class="input-box">
+                        <span class="details">URL</span>
+                        {{form.url}}
+                    </div>
+                    <div class="input-box">
+                        <span class="details">About</span>
+                        {{form.profile_info}}
+                    </div>
                 </div>
-                {{form.errors}}
+                {% if form.errors %}
+                    {{form.errors}}
+                {%endif%}
                 <div class="button">
                     <input type="submit" value="Register">
                 </div>

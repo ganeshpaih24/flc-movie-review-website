@@ -2,8 +2,12 @@
 {%load static%}
 {%block poster%}
 <nav>
-    <a href="{% url 'login' %}">Sign in</a>
-    <img src="{% static '/img/logo.png' %}" title="Logo" width="75">
+    {%if user.is_authenticated %}
+        <a href="{% url 'logout' %}">Log out</a>
+    {%else%}
+        <a href="{% url 'login' %}">Sign in</a>
+        <img src="{% static '/img/logo.png' %}" title="Logo" width="75">
+    {%endif%}
 </nav>
 <div class="home">
     <div class="text">
