@@ -1,32 +1,8 @@
+{%extends 'base.html'%}
 {%load static%}
-<!doctype html>
-<html lang="eng" dir="ltr">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Movie Details</title>
-  <link rel="icon" href="logo.png">
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.rtl.min.css"
-    integrity="sha384-DOXMLfHhQkvFFp+rWTZwVlPVqdIhpDVYT9csOnHSgWQWPX0v5MCGtjCJbY6ERspU" crossorigin="anonymous">
-  <link icon="logo.jpg">
-</head>
+{%block content%}
 
 <body style="background-color:#C9D1D5;">
-<!--   
-  <form id="form" style="margin: 50px auto; max-width:800px;">
-    <div class="row">
-      <div class="col-md-10">
-        <input type="text" id="title" placeholder="title" class="form-control" /><br>
-      </div>
-
-      <div class="col-md-2">
-        <input type="submit" id="btn" class="btn btn-outline-primary" />
-      </div>
-    </div>
-  </form>
- -->
 <div class="row">
   <div class="col-md-10">
     <h2>Movie Info for:</h2>
@@ -76,38 +52,4 @@
         <h6><b>Plot : </b>{{movie_data.Plot}}</h6>
       </div>
     </div>
-  </div>
-
-
-
-
-
-
-
-
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-      crossorigin="anonymous"></script>
-</body>
-<!-- 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>
-  $(document).ready(function () {
-    var form = document.getElementById("form");
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var title = document.getElementById("title").value;
-      fetch('https://www.omdbapi.com/?apikey=6fd4cb31&t=' + title)
-        .then(res => res.json())
-        .then(data => {
-          var disp = document.getElementById("datadisp")
-          disp.innerHTML = '<div class="row"><div class="col-md-4"><img src="' + data.Poster + '" class="card-img-top"/></div><div class="col-md-8"><h4><hr><b>Title : </b>' + data.Title + '</h4><hr><h6><b>Released : </b>' + data.Released + '</h6><h6><b>Runtime : </b>' + data.Runtime + '</h6><h6><b>Genre : </b>' + data.Genre + '</h6><h6><b>Language : </b>' + data.Language + '</h6><h6><b>Country : </b>' + data.Country + '</h6><h6><b>Actors : </b>' + data.Actors + '</h6><h6><b>Writer :</b>' + data.Writer + '</h6><h6><b>Director : </b>' + data.Director + '</h6><h6><b>Awards : </b>' + data.Awards + '</h6><h6><b>Rating : </b>' + data.Ratings[0].Value + '</h6><h6><b>Rotten Tomoto : </b>' + data.Ratings[1].Value + '</h6><h6><b>IMDB Votes : </b>' + data.imdbVotes + '</h6><h6><b>Plot : </b>' + data.Plot + '</h6></div></div></div>'
-        })
-        .catch(err => console.log(err));
-    })
-  })
-</script> -->
-
-</html>
+{%endblock%}
