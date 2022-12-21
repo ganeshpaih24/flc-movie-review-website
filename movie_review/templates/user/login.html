@@ -15,20 +15,20 @@
             <h1>LOGIN</h1>
             <form class="form1" action="" method="POST">
                 {%csrf_token%}
-              <div class="form_grp"> 
-               <label>Username</label>
-               {{form.username}}
-              </div>  
-              <div class="form_grp"> 
-                <label>Password</label>
-                {{form.password}}
-               </div> 
-               {%if form.errors%}
-               <h3>Your username or password did not match!!</h3> 
-               {%endif%}
-               <div>
-                <input class="button" type="submit" value="submit" name="submit">
-               </div>  
+                <div class="form_grp"> 
+                    <label>Username</label>
+                    {{form.username}}
+                </div>  
+                <div class="form_grp"> 
+                    <label>Password</label>
+                    {{form.password}}
+                </div> 
+                {%if form.errors%}
+                    <h3>Your username or password did not match!!</h3>
+                {%endif%}
+                <div>
+                    <input class="button" type="submit" value="submit" name="submit">
+                </div>  
                <div>
                 <h5>New here?<a href="{% url 'register' %}">Register</a></h5>
                </div>  
