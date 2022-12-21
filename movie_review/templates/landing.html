@@ -1,14 +1,6 @@
 {%extends 'base.html'%}
 {%load static%}
-{%block poster%}
-<nav>
-    {%if user.is_authenticated %}
-        <a href="{% url 'logout' %}">Log out</a>
-    {%else%}
-        <a href="{% url 'login' %}">Sign in</a>
-        <img src="{% static '/img/logo.png' %}" title="Logo" width="75">
-    {%endif%}
-</nav>
+{%block content%}
 <div class="home">
     <div class="text">
         <p data-text="FIND&#160;YOUR&#160;FAVORITE&#160;MOVIE">FIND YOUR FAVORITE MOVIE</p>
@@ -20,14 +12,6 @@
             <button class="button" name="action" type="submit" >Search</button>
         </form>
     </div>
-<!--     
-    <div class="search_button">
-
-        <button title="click on search"><img src="{% static '/img/search.png' %}" width="25"><a href="HomePage.html">Search
-            </a></button>
-    </div> -->
     <div class="background"><img src="{% static '/img/icon.jpg' %}" alt=""></div>
 </div>
-
-
 {%endblock%}

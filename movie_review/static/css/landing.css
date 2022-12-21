@@ -20,7 +20,7 @@ nav {
    top: 0;
    left: 0;
    right: 0;
-   background: transparent;
+   background: rgb(85, 194, 195, 0.3);
    z-index: 1000;
 }
 
@@ -103,7 +103,7 @@ p::before{
    outline: none;
 }
 
-.search-bar button {
+button,.login-button{
    background: #0c243c;
    padding: 1px 30px;
    border: none;
@@ -113,7 +113,12 @@ p::before{
    cursor: pointer;
 }
 
-.search-bar button:hover {
+.login-button{
+   margin:1rem;
+   padding:10px 30px;
+}
+
+.search-bar button:hover, .login-button:hover:hover {
    background: rgb(85, 194, 195,0.5);
    color: #0c2345;
    border: 0.2rem solid #0c2345;
@@ -124,7 +129,7 @@ p::before{
    padding: 13px;
 }
 
-  .home .background img {
+.home .background img {
      position: absolute;
      top: 0;
      left: 0;
@@ -133,6 +138,51 @@ p::before{
      width: 100%;
      object-fit: cover;
      filter: brightness(30%);
+}
+
+
+.login-container {
+   width: 70%;
+   margin: auto;
+   padding: 20px;
+   text-align: center;
+   letter-spacing: 0.1em;
+   color: #c9d1d5;
+}
+
+.form1 {
+     padding: 20px;
+  }
+
+  .form1 label {
+     display: block;
+     font-family: 'Times New Roman', Times, serif;
+     font-size: 18px;
+     padding-bottom: 8px;
+  }
+
+  .form1 input[type="text"],
+  .form1 input[type="password"] {
+     width: 250px;
+     padding: 10px;
+   background: rgb(85, 194, 195, 0.5);
+  }
+
+  .form_grp {
+     padding-bottom: 20px;
+  }
+
+  .register-div{
+   margin: 1rem;
+  }
+
+  .register-div a{
+   color:#55c2c3;
+   text-decoration: none;
+  }
+
+  .register-div a:hover {
+     color: #0c2345;
   }
 
  @keyframes animate {
