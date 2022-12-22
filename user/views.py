@@ -1,10 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.shortcuts import render ,redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from user.forms import SignupForm,EditProfileForm
 from django.contrib.auth.decorators import login_required
 from .models import Profile
+from django.template import loader
+from django.http import HttpResponse
 
 
 
@@ -44,7 +46,7 @@ def EditProfile(request):
             profile.url = form.cleaned_data.get('url')
             profile.profile_info = form.cleaned_data.get('profile_info')
             profile.save()
-            return redirect('landing')
+            return redirect('profile',username=profile.user.username)
     else:
         form = EditProfileForm()
 
@@ -54,3 +56,11 @@ def EditProfile(request):
 
     return render(request, 'user/edit_profile.html', context)
 
+def UserProfile(request,username):
+    user=get_object_or_404(User,username=username)
+    profile=Profile.objects.get(user=user)
+    context={
+        'profile':profile
+    }
+    template=loader.get_template('user/user_profile.html')
+    return HttpResponse(template.render(context,request))

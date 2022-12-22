@@ -1,10 +1,9 @@
 {%load static%}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -16,55 +15,35 @@
                 {%csrf_token%}
                 <div class="user-details">
                     <div class="input-box">
-                        <button class="details">File</button>
-                        {{form.picture}}
-                        <input type="text">
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Username</span>
-                        {{form.username}}
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Email</span>
-                        {{form.email}}
-                    </div>
-                    <div class="input-box">
-                        <span class="details">First Name</span>
+                        <label for="first_name">First name</label>
                         {{form.first_name}}
                     </div>
-
                     <div class="input-box">
-                        <span class="details">Last Name</span>
+                        <label for="last_name">Last name</label>
                         {{form.last_name}}
-                        <input type="text" placeholder="Enter your last name" required>
                     </div>
                     <div class="input-box">
-                        <span class="details">Password</span>
-                        {{form.password}}
-                        <input type="password" placeholder="Enter your password" required>
+                        <label for="location">Location</label>
+                        {{form.location}}
                     </div>
                     <div class="input-box">
-                        <span class="details">Confirm Password</span>
-                        {{form.confirm_password}}
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Location</span>
-                        {{form.ocation}}
-                    </div>
-                    <div class="input-box">
-                        <span class="details">URL</span>
+                        <label for="url">URL</label>
                         {{form.url}}
                     </div>
                     <div class="input-box">
-                        <span class="details">About</span>
+                        <label for="profile_info">About</label>
                         {{form.profile_info}}
+                    </div>
+                    <div>
+                        <label for="picture">Profile Picture:</label>
+                        {{form.picture}}
                     </div>
                 </div>
                 {% if form.errors %}
                     {{form.errors}}
                 {%endif%}
                 <div class="button">
-                    <input type="submit" value="Register">
+                    <input type="submit" value="Update">
                 </div>
             </form>
         </div>

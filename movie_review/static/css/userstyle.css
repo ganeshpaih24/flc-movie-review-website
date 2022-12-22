@@ -5,20 +5,21 @@
     box-sizing: border-box;
     color: #0C243C;
 }
-.container{
-    width: 100%;
-    height: 100vh;
-    background-color: #0C243C;
-    display:flex;
+.user-info-container{
+    min-height: 100vh;
+    display: flex;
     align-items: center;
     justify-content: center;
+    flex-flow: column;
+    position: relative;
+    z-index: 0;
 }
 .profile{
-    width:90%;
-    box-shadow: rgb(152, 83, 13);
-    border-radius: 5px;
+    width:50%;
+/*     box-shadow: rgb(152, 83, 13); */
+/*     border-radius: 5px; */
     text-align: center;
-    max-width: 320px;
+/*     max-width: 320px; */
     background: #C9D1D5;
     position: relative;
 }

@@ -6,6 +6,9 @@ import requests
 from .models import Movie, Genre, Rating
 from actor.models import Actor
 from django.utils.text import slugify
+from user.models import Profile
+from django.contrib.auth.models import User
+from django.urls import reverse
 
 # Create your views here.
 def landing(request):
@@ -127,3 +130,21 @@ def genres(request,genre_slug):
     }
     template=loader.get_template('genre.html')
     return HttpResponse(template.render(context,request))
+
+def watchlist(request,imdb_id):
+    movie=Movie.objects.get(imdbID=imdb_id)
+    user=request.user
+    profile=Profile.objects.get(user=user)
+    profile.to_watch.add(movie)
+    return HttpResponseRedirect(reverse('movie-details',args=[imdb_id]))
+
+def watched_movies(request,imdb_id):
+    movie=Movie.objects.get(imdbID=imdb_id)
+    user=request.user
+    profile=Profile.objects.get(user=user)
+    if profile.to_watch.filter(imdbID=imdb_id).exists():
+        profile.to_watch.remove(movie)
+        profile.watched.add(movie)
+    else:
+        profile.watched.add(movie)
+    return HttpResponseRedirect(reverse('movie-details',args=[imdb_id]))

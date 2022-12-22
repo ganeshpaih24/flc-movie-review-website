@@ -6,17 +6,24 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/userstyle.css' %}">
     </head>
     <body>
-        <div class="container"> 
+        <div class="user-info-container"> 
             <div class="profile">     
                 <div class ="image">  
-                   <img src="{% static 'img/colour.jpg %}" class="img-top">
-                  <img src="{% static 'img/blank.jpg' %}" class="user-img" >
+                    <img src="{% static 'img/colour.jpg' %}" class="img-top">
+                    {%if profile.picture%}
+                        <img src="{{ profile.picture.url }}" class="user-img" >
+                    {%else%}
+                        <img src="{% static 'img/blank.jpg' %}" class="user-img">
+                    {%endif%}
+
                 </div>  
                 <div class="first">
-                    <h2>Name</h2>
-                    <p>Location:</p>
-                    <p>Bio:</p>
-                    <a herf="#" class="button">Edit profile</a>
+                    <h2>{{profile.user.first_name}} {{profile.user.last_name}}</h2>
+                    <p>Location: {{profile.location}}</p>
+                    <p>Bio: {{profile.profile_info}}</p>
+                    {%if user.is_authenticated and user == profile.user%}
+                        <a href="{% url 'edit-profile' %}" class="button">Edit profile</a>
+                    {%endif%}
                 </div>
             <div class="list">
                 <div>

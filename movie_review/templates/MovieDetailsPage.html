@@ -50,6 +50,9 @@
         <h6><b>Awards : </b>{{movie_data.Awards}}</h6>
         <h6><b>Rating : </b>{{movie_data.Rated}}</h6>
         <h6><b>Plot : </b>{{movie_data.Plot}}</h6>
+        <a class="login-button" href="{%url 'watchlist' movie_data.imdbID %}">Rate</a>
+        <a class="login-button" href="{%url 'watchlist' movie_data.imdbID %}">Watchlist</a>
+        <a class="login-button" href="{%url 'watched_movies' movie_data.imdbID %}">Watched</a>
       </div>
     </div>
 {%endblock%}
