@@ -196,3 +196,42 @@ button,.login-button{
          width:100%;
       }
    }
+.menu{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   background-color: #333;
+   color: white;
+   padding: 0 20px;
+   height: 60px;
+}
+.menu.dropdown{
+   position: relative;
+   padding-right: 3cm;
+}
+.menu.dropcontent{
+   display: none;
+   position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+}
+.menu .dropdown:hover .dropdown-content {
+   display: block;
+ }
+ .menu a {
+   color: white;
+   text-decoration: none;
+   font-size: 16px;
+ }
+
+ .menu .dropdown-content a {
+   color: black;
+   padding: 12px 16px;
+   text-decoration: none;
+   display: block;
+ }
+ .menu .dropdown-content a:hover {
+   background-color: #f1f1f1;
+ }
