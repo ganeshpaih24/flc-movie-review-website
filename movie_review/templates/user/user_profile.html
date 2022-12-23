@@ -18,9 +18,10 @@
 
                 </div>  
                 <div class="first">
-                    <h2>{{profile.user.first_name}} {{profile.user.last_name}}</h2>
+                    <h2>{{profile.first_name}} {{profile.last_name}}</h2>
+                    <p>"{{profile.profile_info}}"</p>
+                    
                     <p>Location: {{profile.location}}</p>
-                    <p>Bio: {{profile.profile_info}}</p>
                     {%if user.is_authenticated and user == profile.user%}
                         <a href="{% url 'edit-profile' %}" class="button">Edit profile</a>
                     {%endif%}
@@ -29,20 +30,15 @@
                 <div>
                     <h4>Movies watched</h4>
                     <h5>0</h5>
-                    <a href="#">showlist</a>
                 </div>
                 <div>
                     <h4>Series watched</h4>
                     <h5>0</h5>
-                    <a href="#">showlist</a>
                 </div>
                 <div>
-                    <h4>Movies in whislist</h4>
+                    <h4>Movies in wishlist</h4>
                     <h5>0</h5>
-                    <a href="#">showlist</a>
                 </div>
-                
-
             </div>
             </div>
        </div>   
