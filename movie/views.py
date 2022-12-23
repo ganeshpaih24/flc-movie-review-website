@@ -1,3 +1,4 @@
+from .forms import RateForm
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.template import loader
@@ -9,6 +10,7 @@ from django.utils.text import slugify
 from user.models import Profile
 from django.contrib.auth.models import User
 from django.urls import reverse
+
 
 # Create your views here.
 def landing(request):
@@ -108,7 +110,6 @@ def movieDetails(request,imdb_id):
             imdbID=movie_data['imdbID'],
         )
         m.Genre.set(genre_objs)
-        # m.Actors.set(actor_objs)
         #m.Ratings.set(rating_objs)
 
         for actor in actor_objs:
@@ -131,6 +132,30 @@ def genres(request,genre_slug):
     }
     template=loader.get_template('genre.html')
     return HttpResponse(template.render(context,request))
+
+def Rate(request, imdb_id):
+    movie = Movie.objects.get(imdbID=imdb_id)
+    user = request.user
+
+    if request.method == 'POST': 
+        form = RateForm(request.POST)
+        if form.is_valid():
+            rate = form.save(commit=False)
+            rate.user = user
+            rate.movie = movie
+            rate.save()
+            return HttpResponseRedirect (reverse('movie-details', args=[imdb_id]))
+    else:
+        form = RateForm()
+
+    template = loader.get_template('rate.html')
+
+    context = {
+        'form': form,
+        'movie': movie,
+    }
+
+    return HttpResponse(template.render(context, request))    
 
 def watchlist(request,imdb_id):
     movie=Movie.objects.get(imdbID=imdb_id)

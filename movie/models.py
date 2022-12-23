@@ -61,3 +61,21 @@ class Movie(models.Model):
             file_name=self.Poster_url.split("/")[-1]
             self.Poster.save(file_name,files.File(pb),save=False)
         return super().save(*args,**kwargs)
+
+RATE_CHOICES = [
+    (1, '1- Trash'),
+    (2, '2 Terrible'),
+    (3, '3 - OK'),
+    (4, '4 Good'),
+    (5, '5 Perfect'),
+]
+
+class Review (models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE) 
+    date = models.DateTimeField(auto_now_add=True)
+    text = models.TextField(max_length=3000, blank=True)
+    rate = models.PositiveSmallIntegerField(choices=RATE_CHOICES)
+
+    def __str__(self):
+        return self.user.username
