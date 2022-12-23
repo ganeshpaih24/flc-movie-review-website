@@ -17,7 +17,8 @@
     <nav>
         <img src="{% static '/img/logo.png' %}" title="Logo" width="75">
         {%if user.is_authenticated %}
-        <a href="{% url 'logout' %}">Log out</a>
+            <a href="{% url 'edit-profile' %}" class="button">Edit profile</a>
+            <a href="{% url 'logout' %}">Log out</a>
         {%else%}
         <a href="{% url 'login' %}">Sign in</a>
         {%endif%}

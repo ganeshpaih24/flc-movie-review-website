@@ -2,7 +2,6 @@
    font-family: 'Nunito', sans-serif;
    margin: 0;
    padding: 0;
-   box-sizing: border-box;
    text-transform: capitalize;
    outline: none;
    border: none;
@@ -118,10 +117,10 @@ button,.login-button{
    padding:10px 30px;
 }
 
-.search-bar button:hover, .login-button:hover:hover {
+.search-bar button:hover, .login-button:hover {
    background: rgb(85, 194, 195,0.5);
    color: #0c2345;
-   border: 0.2rem solid #0c2345;
+   border: 0.1rem solid #0c2345;
 }
 
 .input {
