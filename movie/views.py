@@ -96,6 +96,7 @@ def movieDetails(request,imdb_id):
             Rated=movie_data['Rated'],
             Released=movie_data['Released'],
             Runtime=movie_data['Runtime'],
+            Actors=movie_data['Actors'],
             Director=movie_data['Director'],
             Writer=movie_data['Writer'],
             Plot=movie_data['Plot'],
@@ -107,7 +108,7 @@ def movieDetails(request,imdb_id):
             imdbID=movie_data['imdbID'],
         )
         m.Genre.set(genre_objs)
-        m.Actors.set(actor_objs)
+        # m.Actors.set(actor_objs)
         #m.Ratings.set(rating_objs)
 
         for actor in actor_objs:
