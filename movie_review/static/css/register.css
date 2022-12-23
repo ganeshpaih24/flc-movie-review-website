@@ -1,9 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins',sans-serif;
+  font-family: 'Nunito',sans-serif;
 }
 body{
   height: 100vh;
@@ -11,7 +10,7 @@ body{
   justify-content: center;
   align-items: center;
   padding: 10px;
-  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  background: linear-gradient(135deg, #55c2c3, #0c243c);
 }
 .container{
   max-width: 700px;
@@ -34,7 +33,7 @@ body{
   height: 3px;
   width: 30px;
   border-radius: 5px;
-  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  background: linear-gradient(135deg, #55c2c3, #0c243c);
 }
 .content form .user-details{
   display: flex;
@@ -64,41 +63,9 @@ form .input-box span.details{
 }
 .user-details .input-box input:focus,
 .user-details .input-box input:valid{
-  border-color: #9b59b6;
+  border-color: #0c243c;
 }
- form .gender-details .gender-title{
-  font-size: 20px;
-  font-weight: 500;
- }
- form .category{
-   display: flex;
-   width: 80%;
-   margin: 14px 0 ;
-   justify-content: space-between;
- }
- form .category label{
-   display: flex;
-   align-items: center;
-   cursor: pointer;
- }
- form .category label .dot{
-  height: 18px;
-  width: 18px;
-  border-radius: 50%;
-  margin-right: 10px;
-  background: #d9d9d9;
-  border: 5px solid transparent;
-  transition: all 0.3s ease;
-}
- #dot-1:checked ~ .category label .one,
- #dot-2:checked ~ .category label .two,
- #dot-3:checked ~ .category label .three{
-   background: #9b59b6;
-   border-color: #d9d9d9;
- }
- form input[type="radio"]{
-   display: none;
- }
+
  form .button{
    height: 45px;
    margin: 35px 0
@@ -114,11 +81,11 @@ form .input-box span.details{
    letter-spacing: 1px;
    cursor: pointer;
    transition: all 0.3s ease;
-   background: linear-gradient(135deg, #71b7e6, #9b59b6);
+   background: linear-gradient(135deg, #55c2c3, #0c243c);
  }
  form .button input:hover{
   /* transform: scale(0.99); */
-  background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+  background: linear-gradient(-135deg, #55c2c3, #0c243c);
   }
  @media(max-width: 584px){
  .container{

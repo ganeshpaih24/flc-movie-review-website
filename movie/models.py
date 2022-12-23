@@ -39,7 +39,7 @@ class Movie(models.Model):
     Genre=models.ManyToManyField(Genre,blank=True)
     Director=models.CharField(max_length=100,blank=True)
     Writer=models.CharField(max_length=300,blank=True)
-    Actors=models.ManyToManyField(Actor,blank=True)
+    Actors=models.CharField(max_length=300,blank=True)
     Plot=models.CharField(max_length=900,blank=True)
     Language=models.CharField(max_length=300,blank=True)
     Country=models.CharField(max_length=100,blank=True)
@@ -62,27 +62,6 @@ class Movie(models.Model):
             self.Poster.save(file_name,files.File(pb),save=False)
         return super().save(*args,**kwargs)
 
-
-
-
-
-
-
-
-# from django.contrib.auth.models import User
-
-
-# # Extending User Model Using a One-To-One Link
-# class Profile(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-#     avatar = models.ImageField(default='default.jpg', upload_to='profile_images')
-#     bio = models.TextField()
-
-#     def __str__(self):
-#         return self.user.username
-
-
 RATE_CHOICES = [
     (1, '1- Trash'),
     (2, '2 Terrible'),
@@ -100,5 +79,3 @@ class Review (models.Model):
 
     def __str__(self):
         return self.user.username
-
-

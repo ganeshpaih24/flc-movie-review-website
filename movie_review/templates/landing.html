@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block content%}
+<div class="home">
+    <div class="text">
+        <p data-text="FIND&#160;YOUR&#160;FAVORITE&#160;MOVIE">FIND YOUR FAVORITE MOVIE</p>
+    </div>
+    <div class="search">
+        <form method="GET" action="{% url 'search' %}" class="search-bar">
+            <input class="input" type="search" placeholder="Search any movie" aria-label="Search" name="q"
+                id="query" value="{{request.GET.q}}">
+            <button class="button" name="action" type="submit" >Search</button>
+        </form>
+    </div>
+    <div class="background"><img src="{% static '/img/icon.jpg' %}" alt=""></div>
+</div>
+{%endblock%}

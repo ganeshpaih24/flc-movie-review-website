@@ -7,6 +7,10 @@ import requests
 from .models import Movie, Genre, Rating
 from actor.models import Actor
 from django.utils.text import slugify
+from user.models import Profile
+from django.contrib.auth.models import User
+from django.urls import reverse
+
 
 # Create your views here.
 def landing(request):
@@ -94,6 +98,7 @@ def movieDetails(request,imdb_id):
             Rated=movie_data['Rated'],
             Released=movie_data['Released'],
             Runtime=movie_data['Runtime'],
+            Actors=movie_data['Actors'],
             Director=movie_data['Director'],
             Writer=movie_data['Writer'],
             Plot=movie_data['Plot'],
@@ -105,7 +110,6 @@ def movieDetails(request,imdb_id):
             imdbID=movie_data['imdbID'],
         )
         m.Genre.set(genre_objs)
-        m.Actors.set(actor_objs)
         #m.Ratings.set(rating_objs)
 
         for actor in actor_objs:
@@ -152,3 +156,21 @@ def Rate(request, imdb_id):
     }
 
     return HttpResponse(template.render(context, request))    
+
+def watchlist(request,imdb_id):
+    movie=Movie.objects.get(imdbID=imdb_id)
+    user=request.user
+    profile=Profile.objects.get(user=user)
+    profile.to_watch.add(movie)
+    return HttpResponseRedirect(reverse('movie-details',args=[imdb_id]))
+
+def watched_movies(request,imdb_id):
+    movie=Movie.objects.get(imdbID=imdb_id)
+    user=request.user
+    profile=Profile.objects.get(user=user)
+    if profile.to_watch.filter(imdbID=imdb_id).exists():
+        profile.to_watch.remove(movie)
+        profile.watched.add(movie)
+    else:
+        profile.watched.add(movie)
+    return HttpResponseRedirect(reverse('movie-details',args=[imdb_id]))
