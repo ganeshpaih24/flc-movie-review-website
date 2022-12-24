@@ -1,10 +1,10 @@
 from django.db import models
-from actor.models import Actor
 from django.utils.text import slugify
 import requests
 from io import BytesIO
 from django.core import files
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Genre(models.Model):
@@ -48,6 +48,9 @@ class Movie(models.Model):
     Poster_url=models.URLField(blank=True)
     imdbID=models.CharField(max_length=100,blank=True)
     Type=models.CharField(max_length=10,blank=True)
+    Ratings = models.ManyToManyField(Rating, blank=True)
+    Metascore = models.CharField(max_length=5, blank=True)
+    imdbRating = models.CharField(max_length=5, blank=True)
 
     def __str__(self):
         return self.Title
@@ -74,7 +77,7 @@ class Review (models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE) 
     date = models.DateTimeField(auto_now_add=True)
-    text = models.TextField(max_length=3000, blank=True)
+    text = models.TextField(max_length=300, blank=True)
     rate = models.PositiveSmallIntegerField(choices=RATE_CHOICES)
 
     def __str__(self):

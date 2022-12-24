@@ -1,7 +1,7 @@
 {%extends 'base.html'%}
 {%load static%}
 {%block content%}
-<div class-"movie-info-container" style="background-color: #7e8c9c; min-height: 100vh;">
+<div class-"movie-info-container" style="background-color: #7e8c9c; min-height: 100vh; overflow-x: hidden;">
   <div class="row">
     <h1 class="text-center pt-5">{{movie_data.Title}}</h1>
   </div>
@@ -28,6 +28,8 @@
         <h6><b>Awards : </b></h6>
         <h6><b>Rating : </b></h6>
         <h6><b>Plot : </b></h6>
+        <br>
+        <h6><b>Review : </b></h6>
       </div>
       <div class="col-md-10">
         <h6 class="mt-3"><b>{{movie_data.Year}}</b></h6>
@@ -55,10 +57,37 @@
         <h6><b>{{movie_data.Awards}}</b></h6>
         <h6><b>{{movie_data.Rated}}</b></h6>
         <h6><b>{{movie_data.Plot}}</b></h6>
-        <div class="pt-3">
-          <a  style="text-decoration:none;"class="login-button" href="{%url 'watchlist' movie_data.imdbID %}">Rate</a>
-          <a  style="text-decoration:none;"class="login-button" href="{%url 'watchlist' movie_data.imdbID %}">Watchlist</a>
-          <a  style="text-decoration:none;"class="login-button" href="{%url 'watched_movies' movie_data.imdbID %}">Watched</a>
+        
+        {% if our_db is True %}
+          <h6><b>Rated {{ reviews_avg.rate__avg }}/5 by {{ reviews_count }} people</b></h6>
+          {% for movie in movie_data.Ratings.all %} 
+            {% if movie.source == 'Internet Movie Database' %}
+              <h6><b>{{ movie.rating }} (IMDB)</b></h6>
+            {% elif movie.source == 'Rotten Tomatoes' %}
+              <h6><b>{{ movie.rating }} ({{ movie.source }})</b></h6>
+            {% else %}
+              <h6><b>{{ movie.rating }} ({{ movie.source }})</b></h6>
+            {% endif %}        
+          {% endfor %}  
+        {% else %}
+          <h6><b>{{ movie_data.Ratings.0.Value }}({{ movie_data.Ratings.0.Source }})</b></h6>
+          <h6><b>{{ movie_data.Ratings.1.Value }}({{ movie_data.Ratings.1.Source }})</b></h6>
+          <h6><b>{{ movie_data.Ratings.2.Value }}({{ movie_data.Ratings.2.Source }})</b></h6>
+        {% endif %}
+         <div class="pt-3">
+          <!-- <div class="rate-dropdown">
+            <a style="text-decoration:none;"class="login-button" href="{%url 'watchlist' movie_data.imdbID %}">Rate</a>
+            <div class="rate-dropdown-link">
+              <a href="{%url 'profile' user.username %}">Profile</a>
+              <a href="{% url 'edit-profile' %}">Edit profile</a>
+              <a href="{% url 'logout' %}">Logout</a>
+            </div>
+          </div> --> 
+          {%if request.user in reviews.user.all%}
+            <a  style="text-decoration:none;"class="login-button" href="{% url 'rate-movie' movie_data.imdbID %}">Rate Movie</a>
+          {%endif%}
+            <a  style="text-decoration:none;"class="login-button" href="{%url 'watchlist' movie_data.imdbID %}">Add to Watchlist</a>
+          <a  style="text-decoration:none;"class="login-button" href="{%url 'watched_movies' movie_data.imdbID %}">Add to Watched</a>
         </div>
         
       </div>
@@ -66,5 +95,39 @@
     </div>
   </div>
   <div class="background" style="background-image: linear-gradient(to left top, #55c2c3, #3397a8, #1f6e87, #154762, #0c243c);"></div>
+</div>
+<div class-"movie-info-container" style="background-color: #7e8c9c; min-height: 100vh; overflow-x: hidden;">
+    <h1 class="text-center pt-5">Reviews</h1>
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-0 border" style="background-color: #f0f2f5;">
+        <div class="card-body p-4">
+          
+        {% for review in reviews %}
+          <div class="card mb-4">
+            <div class="card-body">
+              <p>Type your note, and hit enter to add it</p>
+              <div class="d-flex justify-content-between">
+                <div class="d-flex flex-row align-items-center">
+                  {%if review.user.profile.picture%}
+                  <img src="{{review.user.profile.picture.url}}" alt="avatar" width="25" height="25" />
+                  {%else%}
+                  <img src="{%static 'img/blank.jpg' %}" alt="avatar" width="25"height="25" />
+                  {%endif%}
+                  <p class="small mb-0 ms-2"><a href="{% url 'profile' review.user.username %}" style="text-decoration:none;">{{review.user.username}}</a> on {{review.date}} </p>
+                </div>
+                <div class="d-flex flex-row align-items-center">
+                  <p class="small text-muted mb-0">Rated {{review.rate}} out of 5</p>
+                  <i class="far fa-thumbs-up mx-2 fa-xs text-black" style="margin-top: -0.16rem;"></i>
+                  <p class="small text-muted mb-0">3</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        {%endfor%}
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {%endblock%}

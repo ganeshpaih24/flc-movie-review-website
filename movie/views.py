@@ -4,12 +4,12 @@ from django.contrib.auth.decorators import login_required
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 import requests
-from .models import Movie, Genre, Rating
-from actor.models import Actor
+from .models import Movie, Genre, Rating,Review
 from django.utils.text import slugify
 from user.models import Profile
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.db.models import Avg
 
 
 # Create your views here.
@@ -31,6 +31,9 @@ def landing(request):
 def movieDetails(request,imdb_id):
     if Movie.objects.filter(imdbID=imdb_id).exists():
         movie_data=Movie.objects.get(imdbID=imdb_id)
+        reviews = Review.objects.filter(movie=movie_data)
+        reviews_avg = reviews.aggregate(Avg('rate'))
+        reviews_count = reviews.count()
         our_db=True
     else:
         url='http://www.omdbapi.com/?apikey=c9161d22&i='+imdb_id
@@ -40,13 +43,6 @@ def movieDetails(request,imdb_id):
         #inject
         rating_objs=[]
         genre_objs=[]
-        actor_objs=[]
-
-        #actor
-        # actor_list=[x.strip() for x in movie_data['Actors'].split(',')]
-        # for actor in actor_list:
-        #     a,created=Actor.objects.get_or_create(name=actor)
-        #     actor_objs.append(a)
             
         #genre
         genre_list=list(movie_data['Genre'].replace(" ","").split(','))
@@ -104,22 +100,23 @@ def movieDetails(request,imdb_id):
             Plot=movie_data['Plot'],
             Language=movie_data['Language'],
             Country=movie_data['Country'],
+            Metascore=movie_data['Metascore'],
+			imdbRating=movie_data['imdbRating'],
             Awards=movie_data['Awards'],
             Poster_url=movie_data['Poster'],
             Type=movie_data['Type'],
             imdbID=movie_data['imdbID'],
         )
         m.Genre.set(genre_objs)
-        #m.Ratings.set(rating_objs)
-
-        for actor in actor_objs:
-            actor.movies.add(m)
-            actor.save()
+        m.Ratings.set(rating_objs)
         m.save()
         our_db=False
     context={
         'movie_data':movie_data,
         'our_db':our_db,
+        'reviews':reviews,
+        'reviews_avg':reviews_avg,
+        'reviews_count':reviews_count,
     }
     template=loader.get_template('MovieDetailsPage.html')
     return HttpResponse(template.render(context,request))
@@ -136,7 +133,6 @@ def genres(request,genre_slug):
 def Rate(request, imdb_id):
     movie = Movie.objects.get(imdbID=imdb_id)
     user = request.user
-
     if request.method == 'POST': 
         form = RateForm(request.POST)
         if form.is_valid():
@@ -147,14 +143,11 @@ def Rate(request, imdb_id):
             return HttpResponseRedirect (reverse('movie-details', args=[imdb_id]))
     else:
         form = RateForm()
-
     template = loader.get_template('rate.html')
-
     context = {
         'form': form,
         'movie': movie,
     }
-
     return HttpResponse(template.render(context, request))    
 
 def watchlist(request,imdb_id):
