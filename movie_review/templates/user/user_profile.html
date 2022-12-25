@@ -1,0 +1,49 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>User details</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/userstyle.css' %}">
+    </head>
+    <body>
+        <div class="user-info-container"> 
+            <div class="profile">     
+                <div class ="image">  
+                    <img src="{% static 'img/colour.jpg' %}" class="img-top">
+                    {%if profile.picture%}
+                        <img src="{{ profile.picture.url }}" class="user-img" >
+                    {%else%}
+                        <img src="{% static 'img/blank.jpg' %}" class="user-img">
+                    {%endif%}
+
+                </div>  
+                <div class="first">
+                    <h2>{{profile.first_name}} {{profile.last_name}}</h2>
+                    <p>"{{profile.profile_info}}"</p>
+                    
+                    <p>Location: {{profile.location}}</p>
+                    {%if user.is_authenticated and user == profile.user%}
+                        <a href="{% url 'edit-profile' %}" class="button">Edit profile</a>
+                    {%endif%}
+                </div>
+            <div class="list">
+                <div>
+                    <h4>Movies watched</h4>
+                    <h5>{{movies_watched}}</h5>
+                </div>
+                <div>
+                    <h4>Series watched</h4>
+                    <h5>{{series_watched}}</h5>
+                </div>
+                <div>
+                    <h4>Movies in wishlist</h4>
+                    <h5>{{watchlist_count}}</h5>
+                </div>
+            </div>
+            </div>
+       </div>   
+        <div class="user-info-container">
+            
+        </div>
+    </body>
+</html>

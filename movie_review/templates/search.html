@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block content%}
+<div class="outer-search-container"></div>
+<h1 class="movie-list-title" style="padding-top:4rem; text-align:center;">Results for:{{query}}</h1>
+<div class="search-movie-container">
+    {%for movie in movie_data.Search%}
+        <div class="search-movie-card">
+            <div class="search-movie-image-div">
+                {% if movie.Poster == 'N/A' %}
+                <img src="{% static 'img/no_poster.jpg' %}">
+                {% else %}
+                <img src="{{ movie.Poster }}">
+                {% endif %}
+                <div class="search-movie-title">
+                    <h1>{{movie.Title}}</h1>
+                    <h6>{{movie.Type}}</h6>
+                </div>
+                <div class="search-movie-des">
+                    <p>{{movie.Year}}</p>
+                    <div class="movie-info-link">
+                        <a style="text-decoration:none;"  href="{% url 'movie-details' movie.imdbID %}" class="login-button">Info</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {%endfor%}
+</div>
+{%endblock%}

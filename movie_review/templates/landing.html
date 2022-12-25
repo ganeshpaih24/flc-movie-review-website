@@ -1,0 +1,27 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block content%}
+<div class="home">
+    <div class="text">
+        <p class="landing-text" data-text="FIND&#160;YOUR&#160;FAVORITE&#160;MOVIE">FIND YOUR FAVORITE MOVIE</p>
+    </div>
+    <div class="search">
+        <form method="GET" action="{% url 'search' %}" class="search-bar">
+            <input class="input" type="search" placeholder="Search any movie" aria-label="Search" name="q"
+                id="query" value="{{request.GET.q}}">
+            <button class="button" name="action" type="submit" >Search</button>
+        </form>
+    </div>
+    <div class="genre-dropdown">
+        <a href="#" class="genre-link login-button">Search  by Genre<i class="fa fa-caret-down" style="padding-left:10px;"></i></a>
+        <div class="genre-dropcontent">
+            {%for genre in genre_list%}
+                <a class="login-button genre-button" href="{{ genre.get_absolute_url }}">{{genre}}</a>
+            {%endfor%}
+            <a class="login-button genre-button" href="{% url 'edit-profile' %}">Edit profile</a>
+            <a class="login-button genre-button" href="{% url 'logout' %}">Logout</a>
+        </div>
+    </div>
+    <div class="background"><img src="{% static '/img/icon.jpg' %}" alt=""></div>
+</div>
+{%endblock%}
