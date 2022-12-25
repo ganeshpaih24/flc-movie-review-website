@@ -1,7 +1,7 @@
 {%extends 'base.html'%}
 {%load static%}
 {%block content%}
-<div class-"movie-info-container" style="background-color: #7e8c9c; min-height: 100vh; overflow-x: hidden;">
+<div class-"movie-info-container" style="background-color: #c9d1d5; min-height: 100vh; overflow: hidden;">
   <div class="row">
     <h1 class="text-center pt-5">{{movie_data.Title}}</h1>
   </div>
@@ -57,7 +57,7 @@
         <h6><b>{{movie_data.Awards}}</b></h6>
         <h6><b>{{movie_data.Rated}}</b></h6>
         <h6><b>{{movie_data.Plot}}</b></h6>
-        
+                  <br>
         {% if our_db is True %}
           <h6><b>Rated {{ reviews_avg.rate__avg }}/5 by {{ reviews_count }} people</b></h6>
           {% for movie in movie_data.Ratings.all %} 
@@ -83,7 +83,7 @@
               <a href="{% url 'logout' %}">Logout</a>
             </div>
           </div> --> 
-          {%if request.user in reviews.user.all%}
+          {%if our_db is False or reviewed is False%}
             <a  style="text-decoration:none;"class="login-button" href="{% url 'rate-movie' movie_data.imdbID %}">Rate Movie</a>
           {%endif%}
             <a  style="text-decoration:none;"class="login-button" href="{%url 'watchlist' movie_data.imdbID %}">Add to Watchlist</a>
@@ -96,17 +96,26 @@
   </div>
   <div class="background" style="background-image: linear-gradient(to left top, #55c2c3, #3397a8, #1f6e87, #154762, #0c243c);"></div>
 </div>
-<div class-"movie-info-container" style="background-color: #7e8c9c; min-height: 100vh; overflow-x: hidden;">
+      {%if our_db is True%}
+      {%if reviews_count == 0 %}
+      <div class-"movie-info-container" style="background-color: #c9d1d5; min-height: 100vh; overflow-x: hidden;">
+        <h1 class="text-center pt-5">Reviews</h1>
+      <h1 class="text-center pt-5">No reviews to show :(</h1>
+
+      </div>
+      {%else%}
+
+
+<div class-"movie-info-container" style="background-color: #c9d1d5; min-height: 100vh; overflow-x: hidden;">
     <h1 class="text-center pt-5">Reviews</h1>
   <div class="row d-flex justify-content-center">
     <div class="col-md-8 col-lg-6">
       <div class="card shadow-0 border" style="background-color: #f0f2f5;">
         <div class="card-body p-4">
-          
         {% for review in reviews %}
           <div class="card mb-4">
             <div class="card-body">
-              <p>Type your note, and hit enter to add it</p>
+              <p>{{review.text}}</p>
               <div class="d-flex justify-content-between">
                 <div class="d-flex flex-row align-items-center">
                   {%if review.user.profile.picture%}
@@ -125,9 +134,14 @@
             </div>
           </div>
         {%endfor%}
+          
+
         </div>
       </div>
     </div>
   </div>
 </div>
+        {%endif%}
+        {%endif%}
+
 {%endblock%}
