@@ -14,6 +14,9 @@ from django.db.models import Avg
 
 # Create your views here.
 def landing(request):
+    if Movie.objects.all().exists():
+        genre_list=Genre.objects.all()
+        print(genre_list)
     query=request.GET.get('q')
     if query:
         url='https://www.omdbapi.com/?apikey=c9161d22&s='+query
@@ -22,18 +25,27 @@ def landing(request):
         context={
             'query':query,
             'movie_data':movie_data,
+            'genre_list':genre_list,
         }
         template=loader.get_template('search.html')
         return HttpResponse(template.render(context,request))
-    return render(request,'landing.html')
+    context={'genre_list':genre_list}
+    return render(request,'landing.html',context)
 
 @login_required(login_url='login')
 def movieDetails(request,imdb_id):
     if Movie.objects.filter(imdbID=imdb_id).exists():
         movie_data=Movie.objects.get(imdbID=imdb_id)
         reviews = Review.objects.filter(movie=movie_data)
+        if Review.objects.filter(movie=movie_data,user=request.user).exists():
+            reviewed=True
+        else:
+            reviewed=False
         reviews_avg = reviews.aggregate(Avg('rate'))
-        reviews_count = reviews.count()
+        if Review.objects.filter(movie=movie_data).exists():
+            reviews_count = reviews.count()
+        else:
+            reviews_count=0
         our_db=True
     else:
         url='http://www.omdbapi.com/?apikey=c9161d22&i='+imdb_id
@@ -111,12 +123,19 @@ def movieDetails(request,imdb_id):
         m.Ratings.set(rating_objs)
         m.save()
         our_db=False
+        reviewed=False
+        movie_data_2=Movie.objects.get(imdbID=imdb_id)
+        reviews = Review.objects.filter(movie=movie_data_2)
+        reviews_avg='N/A'
+        reviews_count=0
+
     context={
         'movie_data':movie_data,
         'our_db':our_db,
         'reviews':reviews,
         'reviews_avg':reviews_avg,
         'reviews_count':reviews_count,
+        'reviewed':reviewed,
     }
     template=loader.get_template('MovieDetailsPage.html')
     return HttpResponse(template.render(context,request))
@@ -125,6 +144,7 @@ def genres(request,genre_slug):
     genre=get_object_or_404(Genre,slug=genre_slug)
     movie_data=Movie.objects.filter(Genre=genre)
     context={
+        'genre_slug':genre_slug,
         'movie_data':movie_data,
     }
     template=loader.get_template('genre.html')
