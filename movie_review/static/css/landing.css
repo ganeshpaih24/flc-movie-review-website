@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,600;0,700;1,300&display=swap');
 *{
    font-family: 'Nunito', sans-serif;
    margin: 0;
@@ -11,6 +12,7 @@
    background-attachment:fixed;
    background-size: cover;
    box-sizing: border-box;
+   font-weight: bold;
 }
 
 nav {
@@ -18,7 +20,7 @@ nav {
    top: 0;
    left: 0;
    right: 0;
-   background: rgb(85, 194, 195, 0.3);
+   background:#0c2345;
    z-index: 1000;
 }
 
@@ -226,6 +228,48 @@ button,.login-button{
    padding: 13px;
 }
 
+.genre-dropdown{
+   position: relative;
+   top:3rem;
+}
+
+.genre-dropdown a{
+   text-decoration: none;
+}
+
+.genre-dropcontent {
+   display: none;
+   position: absolute;
+   background-color: #0c243c;
+   width:15rem;
+  height:10rem;
+  overflow:scroll;
+  overflow-x:hidden;
+   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.genre-dropdown:hover .genre-dropcontent{
+   max-height: 10rem;
+   display:block;
+}
+
+.genre-dropdown .genre-dropcontent a{
+   text-decoration: none;
+   display: block;
+   color: #c9d1d5;
+   text-transform: none;
+}
+
+.genre-button{
+   margin:0.1rem 0.5rem;
+/*   margin-bottom:0; */
+   padding:0px;
+}
+
+.genre-link{
+   margin:0px;
+}
+
 .home .background img {
      position: absolute;
      top: 0;
@@ -237,6 +281,66 @@ button,.login-button{
      filter: brightness(30%);
 }
 
+.search-movie-container {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 2rem;
+   margin: 2%;
+}
+
+.outer-search-container{
+   background:#c9d1d5;
+}
+
+.search-movie-card {
+   flex: 1 1 16rem;
+   border-radius: 0.5rem;
+   overflow: hidden;
+   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+   font-weight: bold;
+   color: #0c2345;
+}
+
+.search-movie-image-div img {
+   width: 100%;
+   border-top-right-radius: 5px;
+   border-top-left-radius: 5px;
+   object-fit:cover;
+   height: 20rem;
+}
+
+.search-movie-title  {
+   text-align: center;
+   padding: 10px;
+   padding-bottom: 0px;
+}
+
+.search-movie-title h1 {
+   color: #0c2345;
+   font-weight: bold;
+   font-size: 20px;
+   height:2.5rem;
+}
+
+.search-movie-title h6 {
+   color: #0c2345;
+   margin-bottom: 0px;
+}
+
+
+.search-movie-des {
+   padding: 3px;
+   padding-top: 0px;
+   text-align: center;
+
+   padding-top: 10px;
+   border-bottom-right-radius: 5px;
+   border-bottom-left-radius: 5px;
+}
+
+.movie-info-link{
+   margin:1rem;
+}
 
 .login-container {
    width: 70%;
