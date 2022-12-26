@@ -59,15 +59,15 @@ def EditProfile(request):
 def UserProfile(request,username):
     user=get_object_or_404(User,username=username)
     profile=Profile.objects.get(user=user)
-    movies_count=profile.watched.filter(Type='movie').count()
-    series_count=profile.watched.filter(Type='series').count()
-    watch_list_count=profile.to_watch.all().count()
+    movies_watched = profile.watched.filter(Type='movie')
+    series_watched = profile.watched.filter(Type='series')
+    watchlist=profile.to_watch.all()
 
     context={
         'profile':profile,
-        'movies_count':movies_count,
-        'series_count':series_count,
-        'watch_list_count':watch_list_count
+        'movies_watched':movies_watched,
+        'series_watched':series_watched,
+        'watchlist':watchlist,
     }
     template=loader.get_template('user/user_profile.html')
     return HttpResponse(template.render(context,request))
