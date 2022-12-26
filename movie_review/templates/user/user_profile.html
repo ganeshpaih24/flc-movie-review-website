@@ -4,46 +4,75 @@
     <head>
         <title>User details</title>
         <link rel="stylesheet" type="text/css" href="{% static 'css/userstyle.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="{%static 'js/user.js'%}" defer></script>
     </head>
     <body>
         <div class="user-info-container"> 
-            <div class="profile">     
-                <div class ="image">  
-                    <img src="{% static 'img/colour.jpg' %}" class="img-top">
-                    {%if profile.picture%}
-                        <img src="{{ profile.picture.url }}" class="user-img" >
-                    {%else%}
-                        <img src="{% static 'img/blank.jpg' %}" class="user-img">
-                    {%endif%}
-
-                </div>  
-                <div class="first">
+            <img src="{% static 'img/bg.jpg' %}" class="img-top">
+            <div class="outer-user-container">
+                <div class="left-user-container">
+                    <div class="user-image-container">
+                        {%if profile.picture%}
+                            <img src="{{ profile.picture.url }}" class="user-img" >
+                        {%else%}
+                            <img src="{% static 'img/blank.jpg' %}" class="user-img">
+                        {%endif%}
+                    </div>  
                     <h2>{{profile.first_name}} {{profile.last_name}}</h2>
-                    <p>"{{profile.profile_info}}"</p>
-                    
-                    <p>Location: {{profile.location}}</p>
+                    <p><i class="fa fa-user"></i> {{profile.user.username}}</p>
+                    <p><i class="fa fa-envelope"></i> {{profile.user.email}}</p>
+                    <p><i class="fa fa-travel"></i> {{profile.location}}</p>
+                    <p class="profile-link"><i class="fa fa-link"></i> {{profile.url}}</p>
                     {%if user.is_authenticated and user == profile.user%}
-                        <a href="{% url 'edit-profile' %}" class="button">Edit profile</a>
+                        <a href="{% url 'edit-profile' %}" class="edit-button">Edit profile</a>
                     {%endif%}
+                    <ul class="about">
+                        <li><span>{{movies_watched.count}}</span>Movies Watched</li>
+                        <li><span>{{series_watched.count}}</span>Series Watched</li>
+                        <li><span>{{watchlist.count}}</span>Watchlist</li>
+                    </ul>
+                    <div class="content">
+                        <h3><i class="fa fa-info"></i></h3>
+                        <p>{{profile.profile_info}}</p>
+                    </div>
                 </div>
-            <div class="list">
-                <div>
-                    <h4>Movies watched</h4>
-                    <h5>{{movies_watched}}</h5>
-                </div>
-                <div>
-                    <h4>Series watched</h4>
-                    <h5>{{series_watched}}</h5>
-                </div>
-                <div>
-                    <h4>Movies in wishlist</h4>
-                    <h5>{{watchlist_count}}</h5>
+                <div class="right-user-container">
+                    <nav>
+                        <ul>
+                            <li><button class="movies-button tablinks" onclick="openTab(event, 'user-movies-div')" href="">Movies Watched</button></li>
+                            <li><button class="movies-button tablinks" onclick="openTab(event, 'user-series-div')" href="">Series Watched</button></li=>
+                            <li><button class="movies-button tablinks" onclick="openTab(event, 'user-watchlist-div')" href="">Watchlist</button></liet=>
+                        </ul>
+                    </nav>
+                    <div class="user-tab">
+                        <div class="user-movies-div tabcontent" id="user-movies-div">
+                            {%for movie in movies_watched%}
+                            <a href="{%url 'movie-details' movie.imdbID%}"><img src=" {{ movie.Poster.url }} " /></a>
+                            {%endfor%}
+                            {%if movies_watched.count == 0 %}
+                            <h3>No movies to show:(</h3>
+                            {%endif%}
+                        </div>
+                        <div class="user-series-div tabcontent" id="user-series-div">
+                            {%for movie in series_watched%}
+                                <a href="{%url 'movie-details' movie.imdbID%}"><img src=" {{ movie.Poster.url }} " /></a>
+                            {%endfor%}
+                            {%if series_watched.count == 0 %}
+                            <h3>No movies to show:(</h3>
+                            {%endif%}
+                        </div>
+                        <div class="user-watchlist-div tabcontent" id="user-watchlist-div">
+                            {%for movie in watchlist%}
+                                <a href="{%url 'movie-details' movie.imdbID%}"><img src=" {{ movie.Poster.url }} " /></a>
+                            {%endfor%}
+                            {%if watchlist.count == 0 %}
+                            <h3>No movies to show:(</h3>
+                            {%endif%}
+                        </div>
+                    </div>
                 </div>
             </div>
-            </div>
-       </div>   
-        <div class="user-info-container">
-            
-        </div>
+        </div>   
     </body>
 </html>
