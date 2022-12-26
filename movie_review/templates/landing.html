@@ -18,8 +18,6 @@
             {%for genre in genre_list%}
                 <a class="login-button genre-button" href="{{ genre.get_absolute_url }}">{{genre}}</a>
             {%endfor%}
-            <a class="login-button genre-button" href="{% url 'edit-profile' %}">Edit profile</a>
-            <a class="login-button genre-button" href="{% url 'logout' %}">Logout</a>
         </div>
     </div>
     <div class="background"><img src="{% static '/img/icon.jpg' %}" alt=""></div>
