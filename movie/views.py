@@ -16,7 +16,8 @@ from django.db.models import Avg
 def landing(request):
     if Movie.objects.all().exists():
         genre_list=Genre.objects.all()
-        print(genre_list)
+    else:
+        genre_list=[]
     query=request.GET.get('q')
     if query:
         url='https://www.omdbapi.com/?apikey=c9161d22&s='+query
@@ -25,7 +26,6 @@ def landing(request):
         context={
             'query':query,
             'movie_data':movie_data,
-            'genre_list':genre_list,
         }
         template=loader.get_template('search.html')
         return HttpResponse(template.render(context,request))
