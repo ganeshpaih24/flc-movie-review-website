@@ -49,7 +49,7 @@ def movieDetails(request,imdb_id):
         our_db=True
     else:
         url='http://www.omdbapi.com/?apikey=c9161d22&i='+imdb_id
-        response=requests.get(url)
+        response=requests.get(url, timeout=3)
         movie_data=response.json()
 
         #inject
