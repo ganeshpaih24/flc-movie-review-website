@@ -1,4 +1,4 @@
-# FLC-Movie-Review-Website
+## [FLC-Movie-Review-Website](https://ganeshpaih24.pythonanywhere.com/)
 
 
 <p align="center"> 
@@ -74,3 +74,43 @@ A Hackfest Project for Movie Reviews. Using this platform ‘Bit Movies’ user 
     ```bash
     python manage.py runserver
     ```
+    
+## Screenshots
+
+- Landing Page
+<img src="https://i.postimg.cc/BQWWSLH3/Screenshot-20221229-223010.png" alt="Landing Page">
+
+- Login Page
+<img src="https://i.postimg.cc/JnK9PGvD/Screenshot-20221229-203726.png" alt="Login Page">
+
+- Register Page
+<img src="https://i.postimg.cc/JzkCM7Dv/Screenshot-20221229-203753.png" alt="Register Page">
+
+- Profile Page
+<img src="https://i.postimg.cc/FHc8wPwQ/Screenshot-20221229-213527.png" alt="Profile Page">
+
+- Edit Profile Page
+<img src="https://i.postimg.cc/8P3g2f5L/Screenshot-20221229-213151.png" alt="Edit Profile Page">
+
+- Search Results Page
+<img src="https://i.postimg.cc/158LrRHX/Screenshot-20221229-213906.png" alt="Search Results Page">
+
+- Movie Info Page
+<img src="https://i.postimg.cc/8CgQ58L5/Screenshot-20221229-215119.png" alt="Movie Info Page">
+
+- Ratings Page
+<img src="https://i.postimg.cc/c46NkBss/Screenshot-20221229-215538.png" alt="Ratings Page">
+
+- Display Review Page
+<img src="https://i.postimg.cc/N0Rt7GQm/Screenshot-20221229-215158.png" alt="Review Page">
+
+- Genre Page
+<img src="https://i.postimg.cc/T1wBSTvk/Screenshot-20221229-215702.png" alt="Genre Page">
+
+## Contributors
+| <img src = "https://avatars.githubusercontent.com/u/91747440?v=4" width="50px"> | <img src = "https://avatars.githubusercontent.com/u/107351775?v=4" width="50px"> | <img src = "https://avatars.githubusercontent.com/u/109450989?v=4" width="50px"> | <img src = "https://avatars.githubusercontent.com/u/119883604?v=4" width="50px"> | <img src = "https://avatars.githubusercontent.com/u/119871841?v=4" width="50px"> | <img src = "https://avatars.githubusercontent.com/u/91683726?v=4" width="50px"> | <img src = "https://avatars.githubusercontent.com/u/106546916?v=4" width="50px"> | <img src = "https://avatars.githubusercontent.com/u/116286550?v=4" width="50px"> | <img src = "https://avatars.githubusercontent.com/u/119872202?v=4" width="50px"> | 
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | 
+| [Ganesh](https://github.com/ganeshpaih24/) |  [Sharan](https://github.com/SharanShetty11/)   |  [Vandana](https://github.com/Vandanaprabhu7/)   |  [Saachi](https://github.com/SaachiSuvarna/)   |  [Sanjey](https://github.com/sanjeeey/)   |  [Deeksha](https://github.com/pai23deeksha/)   |  [Deepika](https://github.com/deepika-vk/)   |  [Pratham](https://github.com/12345prath/)   |  [Pavithra](https://github.com/pav-thra/)   |
+
+## License
+[Apache License 2.0](https://github.com/ganeshpaih24/flc-movie-review-website/blob/main/LICENSE)
