@@ -81,7 +81,7 @@ A Hackfest Project for Movie Reviews. Using this platform ‘Bit Movies’ user 
 <img src="https://i.postimg.cc/BQWWSLH3/Screenshot-20221229-223010.png" alt="Landing Page">
 
 - Login Page
-<img src="https://i.postimg.cc/JnK9PGvD/Screenshot-20221229-203726.png" alt="Login Page">
+<img src="https://i.ibb.co/R2TbP3q/Screenshot-20221229-203726.png" alt="Login Page">
 
 - Register Page
 <img src="https://i.postimg.cc/JzkCM7Dv/Screenshot-20221229-203753.png" alt="Register Page">
