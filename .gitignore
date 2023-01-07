@@ -4,6 +4,7 @@
 .idea
 # media/*
 # !media/default.jpg
+*.pyc
 db.sqlite3
 env
 */migrations/0*
@@ -84,6 +85,9 @@ ipython_config.py
 .python-version
 
 # Environments
+*.env
+.env/
+.venv/
 .env
 .venv
 env/
