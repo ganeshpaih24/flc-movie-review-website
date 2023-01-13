@@ -32,10 +32,10 @@ class Profile(models.Model):
 		super().save(*args, **kwargs)
 		SIZE = 250, 250
 
-		if self.picture:
-			pic = Image.open(self.picture.path)
-			pic.thumbnail(SIZE, Image.LANCZOS)
-			pic.save(self.picture.path)
+#		if self.picture:
+#			pic = Image.open(self.picture.path)
+#			pic.thumbnail(SIZE, Image.LANCZOS)
+#			pic.save(self.picture.path)
 
 	def __str__(self):
 		return self.user.username
