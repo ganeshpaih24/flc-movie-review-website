@@ -6,6 +6,7 @@ from django.db.models.signals import post_save
 from PIL import Image
 from django.conf import settings
 import os
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 def user_directory_path(instance,filename):
@@ -25,7 +26,7 @@ class Profile(models.Model):
 	created = models.DateField(auto_now_add=True)
 	to_watch = models.ManyToManyField(Movie, related_name='towatch')
 	watched = models.ManyToManyField(Movie, related_name='watched')
-	picture = models.ImageField(upload_to=user_directory_path, blank=True, null=True)
+	picture = CloudinaryField('image')
 
 	def save(self, *args, **kwargs):
 		super().save(*args, **kwargs)

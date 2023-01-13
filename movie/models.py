@@ -5,6 +5,8 @@ from io import BytesIO
 from django.core import files
 from django.urls import reverse
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
+
 
 # Create your models here.
 class Genre(models.Model):
@@ -44,7 +46,7 @@ class Movie(models.Model):
     Language=models.CharField(max_length=300,blank=True)
     Country=models.CharField(max_length=100,blank=True)
     Awards=models.CharField(max_length=250,blank=True)
-    Poster=models.ImageField(upload_to='movies',blank=True)
+    Poster=CloudinaryField('image')
     Poster_url=models.URLField(blank=True)
     imdbID=models.CharField(max_length=100,blank=True)
     Type=models.CharField(max_length=10,blank=True)
@@ -62,7 +64,7 @@ class Movie(models.Model):
             pb.write(resp.content)
             pb.flush()
             file_name=self.Poster_url.split("/")[-1]
-            self.Poster.save(file_name,files.File(pb),save=False)
+            #self.Poster.save(file_name,files.File(pb),save=False)
         return super().save(*args,**kwargs)
 
 RATE_CHOICES = [

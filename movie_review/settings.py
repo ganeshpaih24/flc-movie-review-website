@@ -9,7 +9,9 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 from pathlib import Path
 import os
 
@@ -25,7 +27,7 @@ load_dotenv(os.path.join(BASE_DIR,".env"))
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["bit-movies-flc.up.railway.app", "192.168.0.1", "104.196.232.237", "127.0.0.1"]
 CSRF_TRUSTED_ORIGINS = ['https://bit-movies-flc.up.railway.app']
@@ -42,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'movie.apps.MovieConfig',
     'user',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -139,10 +142,8 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# import dj_database_url
-
-# DATABASE_URL = os.getenv("DATABASE_URL")
-
-# DATABASES = {
-#     "default": dj_database_url.config(default=DATABASE_URL, conn_max_age=1800),
-# }
+cloudinary.config( 
+  cloud_name = os.getenv("CLOUD_NAME"),
+  api_key = os.getenv("API_KEY"),
+  api_secret = os.getenv("API_SECRET")
+)
