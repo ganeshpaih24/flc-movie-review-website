@@ -56,6 +56,9 @@ A Hackfest Project for Movie Reviews. Using this platform ‘Bit Movies’ user 
      ```env
      SECRET_KEY=<django_secret_key>
      DATABASE_URL=<your_database_url>
+     API_KEY=<cloudinary_api_key>
+     API_SECRET=<cloudinary_api_secret>
+     CLOUD_NAME=<cloudinary_cloud_name>
     ```
     - `DATABASE_URL` in `env` is in the form of `postgres://user:pass@host/dbname`
     - `SECRET_KEY` can be generated using `get_random_secret_key()` method
@@ -63,6 +66,7 @@ A Hackfest Project for Movie Reviews. Using this platform ‘Bit Movies’ user 
      from django.core.management.utils import get_random_secret_key
      print(get_random_secret_key())
     ```
+    - Cloudinary related `env` vars can be accessed by signing up on [Cloudinary](https://cloudinary.com/) and opening up the dashboard.
 6. Make migrations
      ```bash
     python manage.py makemigrations
