@@ -17,7 +17,7 @@ A Hackfest Project for Movie Reviews. Using this platform ‘Bit Movies’ user 
 
 1. Backend Framework: **Django**
 2. Frontend Technologies: **HTML**, **CSS**, **Javascript**, **Bootstrap**
-
+3. Deployment: **Railway**
 
 ## Installation 
 
@@ -49,6 +49,7 @@ A Hackfest Project for Movie Reviews. Using this platform ‘Bit Movies’ user 
     ```bash
     pip install -r requirements.txt
     ```
+
 4. Checkout to develop branch
      ```git
     git status
@@ -57,10 +58,21 @@ A Hackfest Project for Movie Reviews. Using this platform ‘Bit Movies’ user 
     git checkout develop
     
     ```
+5. Start a postgres database called 'bit-movies-flc' on default port (5432)
 
-5. Make migrations/ Create db.sqlite3
-
-    ```bash
+6. Create `.env` in project root folder and add the following
+     ```env
+     SECRET_KEY=<django_secret_key>
+     DATABASE_URL=<your_database_url>
+    ```
+    - `DATABASE_URL` in `env` is in the form of `postgres://user:pass@host/dbname`
+    - `SECRET_KEY` can be generated using `get_random_secret_key()` method
+     ```bash
+     from django.core.management.utils import get_random_secret_key
+     print(get_random_secret_key())
+    ```
+7. Make migrations
+     ```bash
     python manage.py makemigrations
     python manage.py migrate
     ```
