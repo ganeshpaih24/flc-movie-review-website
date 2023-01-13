@@ -50,17 +50,9 @@ A Hackfest Project for Movie Reviews. Using this platform ‘Bit Movies’ user 
     pip install -r requirements.txt
     ```
 
-4. Checkout to develop branch
-     ```git
-    git status
-    git pull
-    git branch
-    git checkout develop
-    
-    ```
-5. Start a postgres database called 'bit-movies-flc' on default port (5432)
+4. Start a postgres database called 'bit-movies-flc' on default port (5432)
 
-6. Create `.env` in project root folder and add the following
+5. Create `.env` in project root folder and add the following
      ```env
      SECRET_KEY=<django_secret_key>
      DATABASE_URL=<your_database_url>
@@ -71,18 +63,18 @@ A Hackfest Project for Movie Reviews. Using this platform ‘Bit Movies’ user 
      from django.core.management.utils import get_random_secret_key
      print(get_random_secret_key())
     ```
-7. Make migrations
+6. Make migrations
      ```bash
     python manage.py makemigrations
     python manage.py migrate
     ```
-6. Create a super user.
+7. Create a super user.
     In django if you want to access admin page, you need to create an account first.
     ```djangotemplate
     python manage.py createsuperuser
     ```
    Then select your username and password.
-7. Run server
+8. Run server
     ```bash
     python manage.py runserver
     ```
