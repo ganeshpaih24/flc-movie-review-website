@@ -1,4 +1,4 @@
-## [FLC-Movie-Review-Website](https://ganeshpaih24.pythonanywhere.com/)
+## [FLC-Movie-Review-Website](https://bit-movies-flc.up.railway.app/)
 
 
 <p align="center"> 
