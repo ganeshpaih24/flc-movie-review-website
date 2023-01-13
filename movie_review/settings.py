@@ -25,7 +25,7 @@ load_dotenv(os.path.join(BASE_DIR,".env"))
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["bit-movies-flc.up.railway.app", "192.168.0.1", "104.196.232.237", "127.0.0.1"]
 CSRF_TRUSTED_ORIGINS = ['https://bit-movies-flc.up.railway.app']

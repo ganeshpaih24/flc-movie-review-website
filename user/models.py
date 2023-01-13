@@ -9,7 +9,7 @@ import os
 
 # Create your models here.
 def user_directory_path(instance,filename):
-    profile_pic_name = 'user_{0}/profile.jpg'.format(instance.user.id)
+    profile_pic_name = 'user/user_{0}/profile.jpg'.format(instance.user.id)
     full_path = os.path.join(settings.MEDIA_ROOT, profile_pic_name)
     if os.path.exists(full_path):
        	os.remove(full_path)
