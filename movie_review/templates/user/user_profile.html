@@ -48,7 +48,7 @@
                     <div class="user-tab">
                         <div class="user-movies-div tabcontent" id="user-movies-div">
                             {%for movie in movies_watched%}
-                            <a href="{%url 'movie-details' movie.imdbID%}"><img src=" {{ movie.Poster.url }} " /></a>
+                            <a href="{%url 'movie-details' movie.imdbID%}"><img src=" {{ movie.Poster_url }} " /></a>
                             {%endfor%}
                             {%if movies_watched.count == 0 %}
                             <h3>No movies to show:(</h3>
@@ -56,7 +56,7 @@
                         </div>
                         <div class="user-series-div tabcontent" id="user-series-div">
                             {%for movie in series_watched%}
-                                <a href="{%url 'movie-details' movie.imdbID%}"><img src=" {{ movie.Poster.url }} " /></a>
+                                <a href="{%url 'movie-details' movie.imdbID%}"><img src=" {{ movie.Poster_url }} " /></a>
                             {%endfor%}
                             {%if series_watched.count == 0 %}
                             <h3>No movies to show:(</h3>
@@ -64,7 +64,7 @@
                         </div>
                         <div class="user-watchlist-div tabcontent" id="user-watchlist-div">
                             {%for movie in watchlist%}
-                                <a href="{%url 'movie-details' movie.imdbID%}"><img src=" {{ movie.Poster.url }} " /></a>
+                                <a href="{%url 'movie-details' movie.imdbID%}"><img src=" {{ movie.Poster_url }} " /></a>
                             {%endfor%}
                             {%if watchlist.count == 0 %}
                             <h3>No movies to show:(</h3>
