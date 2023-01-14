@@ -61,7 +61,7 @@ def UserProfile(request,username):
     profile=Profile.objects.get(user=user)
     movies_watched = profile.watched.filter(Type='movie')
     series_watched = profile.watched.filter(Type='series')
-    watchlist=profile.to_watch.all()
+    watchlist=profile.to_watch.all().order_by("-imdbRating")
 
     context={
         'profile':profile,

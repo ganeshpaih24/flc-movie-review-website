@@ -17,7 +17,8 @@ A Hackfest Project for Movie Reviews. Using this platform ‘Bit Movies’ user 
 
 1. Backend Framework: **Django**
 2. Frontend Technologies: **HTML**, **CSS**, **Javascript**, **Bootstrap**
-3. Deployment: **Railway**
+3. APIs: **OMDB**, **Cloudinary**
+4. Deployment: **Railway**
 
 ## Installation 
 
@@ -83,6 +84,8 @@ A Hackfest Project for Movie Reviews. Using this platform ‘Bit Movies’ user 
     python manage.py runserver
     ```
     
+## [Video Description](https://drive.google.com/file/d/17aOL-pjIRa78R7e17urk3kPRu3rqeV32/view?usp=share_link)
+
 ## Screenshots
 
 - Landing Page

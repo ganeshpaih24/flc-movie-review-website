@@ -171,14 +171,14 @@ def Rate(request, imdb_id):
     return HttpResponse(template.render(context, request))    
 
 def watchlist(request,imdb_id):
-    movie=Movie.objects.get(imdbID=imdb_id).order_by("-imdbRating")
+    movie=Movie.objects.get(imdbID=imdb_id)
     user=request.user
     profile=Profile.objects.get(user=user)
     profile.to_watch.add(movie)
     return HttpResponseRedirect(reverse('movie-details',args=[imdb_id]))
 
 def watched_movies(request,imdb_id):
-    movie=Movie.objects.get(imdbID=imdb_id).order_by("-imdbRating")
+    movie=Movie.objects.get(imdbID=imdb_id)
     user=request.user
     profile=Profile.objects.get(user=user)
     if profile.to_watch.filter(imdbID=imdb_id).exists():
